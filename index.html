@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			
+            <style>
+                #body {
+                    text-align: center;
+                }
+
+                p {
+                    text-align: left;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width:50%;
+                }
+
+                #container {
+                    margin-left: auto;
+                    margin-right: auto;
+                    width:50%;
+                }
+
+            </style>
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+			<script src="http://code.highcharts.com/highcharts.js"></script>
+
+		<title>Model Example</title>
+		<script>
+
+            $(document).ready(function () {
+
+                var chart
+                $('#container').highcharts({
+                    chart: {
+                        type: 'line',
+                        marginRight: 10,
+                    },
+
+                    plotOptions: {
+                        series: {
+                            animation: {
+                                duration: 10000     //Controls the time required for plot to be fully rendered.
+                            }
+                        }
+                    },
+
+                    title: {
+                        text: 'Example'
+                    },
+                    xAxis: {
+                        // type: 'datetime',
+                        tickPixelInterval: 150,
+                        text: 'Time'
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 2,
+                            color: '#808080'
+                        }]
+                    },
+                    
+                    legend: {
+                        enabled: true
+                    },
+                    exporting: {
+                        enabled: true
+                    },
+                    series: [{
+                        name: 'Line 1',
+                        data: (function () {
+                            Tmax = 20;
+                            var data = [],
+                                i;
+
+                            for (i = 1; i <= Tmax; i++) {
+                                data.push({
+                                    x: i,
+                                    y: 0.5*Math.pow(i,0.5)
+                                });
+                            }
+                            return data;
+                        })()
+                    }, {
+                        name: 'Line 2',
+                        data: (function () {
+                            Tmax = 20;
+                            var data = [],
+                                i;
+
+                            for (i = 1; i <= Tmax; i++) {
+                                data.push({
+                                    x: i,
+                                    y: 0.5*Math.pow(5-0.1*i,0.5)
+                                });
+                            }
+                            return data;
+                        })()
+                    }]
+                });
+            });
+
+		</script>
+	</head>
+	<body>
+        
+        <br>
+
+        <p>I would like to have a set of text input fields somewhere around here. Either single or double column. The fields should be prepopulated with default values. There will be a submit button. <em>Only</em> once the submit botton is clicked should the plot be rendered. </p>
+
+        <div id="container"></div>
+	
+    </body>
+</html>
